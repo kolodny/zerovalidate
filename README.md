@@ -3,6 +3,8 @@ zerovalidate
 
 A minimalist javascript form validator
 
+# [DEMO](http://goo.gl/bRoFK)
+
 ----
 
 ### Usage:
