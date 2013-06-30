@@ -1,0 +1,90 @@
+<!doctype HTML>
+<html>
+  <head>
+    <title>Zerovalidate Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <style>
+        .container { padding-top: 30px; }
+        .zero-validate-error {
+            outline: 2px solid red !important;
+			-moz-outline-radius: 4px; /* try to look somewhat normal in FF */
+        }
+    </style>
+  </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="span12">
+                    <form class="form-horizontal" method="GET">
+                        <div class="control-group">
+                            <label class="control-label" for="inputEmail">Email</label>
+                            <div class="controls">
+                                <input type="text" id="inputEmail" placeholder="Email" name="email" data-validate="email">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="address1">Address1</label>
+                            <div class="controls">
+                                <input type="text" id="address1" placeholder="Address" name="address"
+                                        data-validate="notBlank">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="address2">Address2</label>
+                            <div class="controls">
+                                <input type="text" id="address2" placeholder="Address" name="address"
+                                        data-validate="notBlank">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="inputPassword">Password</label>
+                            <div class="controls">
+                                <input type="password" id="inputPassword" class="form-password" placeholder="Password" name="password"
+                                        data-validate="password">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="inputPassword2">Verify Password</label>
+                            <div class="controls">
+                                <input type="password" id="inputPassword2" placeholder="Password" name="password2"
+                                        data-validate="passwordMatch" data-match="form-password">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <div class="controls">
+                                <label class="checkbox">
+                                    <input type="checkbox" name="remember" data-validate="sayYes" data-placement="left">
+									I agree to the terms &amp; services
+                                </label>
+                                <button type="submit" class="btn">Sign in</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+		</div>
+        <script src="http://code.jquery.com/jquery.min.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
+        <script src="zerovalidate.js"></script>
+        <script>
+            $(function() {
+                $('form').zerovalidate({
+                    email: function(value) {
+                        if (!/\w{2,}@\w{2,}\.\w{2,}/.test(value)) { return 'Please enter a valid email'; }
+                    },
+                    notBlank: function(value, $input) {
+                        if (!$.trim(value)) { return $input.parent().prev().text() + ' cannot be left blank'; }
+                    },
+                    password: function(value) {
+                        if ($.trim(value).length < 6) { return 'Please enter at least 6 characters'; }
+                    },
+                    passwordMatch: function(value, $input, $form) {
+                        if (!value || value !== $form.find('.' + $input.data('match')).val()) { return 'Passwords must match'; }
+                    },
+					sayYes: function(checked) { if (!checked) { return 'Please accept the terms'; } }
+                });
+            });
+        </script>
+    </body>
+</html>
