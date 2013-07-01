@@ -3,6 +3,8 @@ zerovalidate
 
 A minimalist javascript form validator
 
+MIT License
+
 # [DEMO](http://goo.gl/bRoFK)
 
 ----
