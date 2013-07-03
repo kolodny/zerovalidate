@@ -42,9 +42,9 @@
 				validSoFar = true;
 				runThroughInputs($form.find(':input'), options.inputPassed, options.inputFailed);
 				if (!validSoFar) {
-					options.formFailed.call($form[0], e, $form);
+					return options.formFailed.call($form[0], e, $form);
 				} else {
-					options.formPassed.call($form[0], e, $form);
+					return options.formPassed.call($form[0], e, $form);
 				}
 			});
 
