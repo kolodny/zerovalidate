@@ -48,10 +48,13 @@
 				}
 			});
 
-			$form.on('input', ':input:not(:radio,:checkbox)', function() {
+			$form.on('input', ':input:not(:radio,:checkbox,select)', function() {
 				runThroughInputs($form.find('.' + options.errorClass), options.inputPassed, $.noop);
 			});
 			$form.on('click', ':radio,:checkbox', function() {
+				runThroughInputs($form.find('.' + options.errorClass), options.inputPassed, $.noop);
+			});
+			$form.on('change', 'select', function() {
 				runThroughInputs($form.find('.' + options.errorClass), options.inputPassed, $.noop);
 			});
 		});
