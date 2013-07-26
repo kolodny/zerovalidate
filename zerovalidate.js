@@ -1,3 +1,8 @@
+// zerovalidate
+
+// Copyright 2013 Moshe Kolodny
+// Released under the MIT license
+
 ;(function($) {
 	$.fn.zerovalidate = function(validateFunctions, options) {
 		options = $.extend({
