@@ -43,7 +43,7 @@
 					});
 				};
 
-			$form.submit(function(e) {
+			$form.on('submit validate', function(e) {
 				validSoFar = true;
 				runThroughInputs($form.find(':input'), options.inputPassed, options.inputFailed);
 				if (!validSoFar) {
