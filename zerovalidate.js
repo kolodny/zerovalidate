@@ -21,7 +21,13 @@
 						.addClass(options.errorClass);
 				},
 			formPassed: $.noop,
-			formFailed: function(e) { e.preventDefault(); }
+			formFailed: function(e) {
+				if (e.type === 'submit') {
+					e.preventDefault();
+				} else {
+					return false; // e.type === 'validate' when triggered with .triggerHandler('validate') return failure
+				}
+			}
 		}, options);
 
 		return this.each(function() {
