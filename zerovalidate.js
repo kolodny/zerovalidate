@@ -5,6 +5,7 @@
 
 ;(function($) {
 	$.fn.zerovalidate = function(validateFunctions, options) {
+		validateFunctions = validateFunctions || {};
 		options = $.extend({
 			errorClass: 'zero-validate-error',
 			inputPassed: function($input) { $input.popover('destroy').removeClass(options.errorClass); },
