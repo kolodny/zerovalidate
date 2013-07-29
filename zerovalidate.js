@@ -37,7 +37,8 @@
 					$formInputs.each(function() {
 						var
 							$input = $(this),
-							validateFn = validateFunctions[$input.data('validate')] || $.noop,							
+							validate = $input.data('validate'),
+							validateFn = validateFunctions[validate] || $.fn.zerovalidate.functions[validate] || $.noop,							
 							result = validateFn.call($input[0], ['checkbox', 'radio'].indexOf($input[0].type.toLowerCase()) > -1 ? $input[0].checked : $input.val(), $input, $form);
 
 						if (typeof result === 'string') {
@@ -69,6 +70,10 @@
 				runThroughInputs($form.find('.' + options.errorClass), options.inputPassed, $.noop);
 			});
 		});
+	};
+	$.fn.zerovalidate.functions = {
+		notBlank: function(value) { if (!$.trim(value).length) return 'This field cannot be left blank'; }
+		//email: function(value) { if (!/\w{2,}@\w{2,}\.\w{2,}/.test(value)) return 'Please enter a valid email'; }
 	};
 })(jQuery);
 
