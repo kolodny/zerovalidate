@@ -86,3 +86,8 @@ formPassed: $.noop,
 ```javascript
 formFailed: function(e) { e.preventDefault(); }
 ```
+
+You can also add validation functions to to `$.fn.zerovalidate.functions`
+```javascript
+$.fn.zerovalidate.functions.email = function(value) { if (!/\w{2,}@\w{2,}\.\w{2,}/.test(value)) return 'Please enter a valid email'; };
+```
